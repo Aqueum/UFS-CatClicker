@@ -8,14 +8,11 @@ function Cat(nom, imgURL, credit, creditURL) {
     this.creditURL = creditURL;
     this.clicks = 0;
     this.clickdisp = 'clickdisp'+nom;
-    // this.sclickdisp = '$clickdisp'+nom;
-    // this.hclickdisp = '#clickdisp'+nom;
-    this.catset = function() {return '<img id="cat-'+this.nom+'" width="512" alt="'+this.nom+'" src="'+this.imgURL+'"/>'+
+    this.catset = function() {return '<h2>'+this.nom+'</h2>'+
+        '<img id="cat-'+this.nom+'" width="512" alt="'+this.nom+'" src="'+this.imgURL+'"/>'+
         '<br/>'+'<a class="attribution" href="'+this.creditURL+'">'+this.credit+'</a>'+
-        '<p id="'+this.clickdisp+'">'+this.clicks+' clicks</p>'};
+        '<br/>'+'<p>'+this.clicks+' clicks</p>'};
 }
-
-var $catty = $('#catty');
 
 var cD9T = new Cat("D9T",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/CatD9T.jpg/1024px-CatD9T.jpg",
@@ -29,22 +26,14 @@ var c777D = new Cat("777D",
 var cats = [cD9T, c777D];
 
 for (var i in cats) {
-    $catty.append(cats[i].catset());
-    // var cats[i].sclickdisp = $('cats[i].hclickdisp');
-    // $('#cat-'+cats[i].nom+'').click(function() {
-    //     cats[i].clicks++;
-    //     cats[i].sclickdisp.text('clicked ' + cats[i].clicks + ' times')
-    // });
+    var elem = document.createElement('div');
+    elem.innerHTML = cats[i].catset();
+    elem.id = cats[i].nom;
+    elem.addEventListener('click', (function(iCopy) {
+        return function() {
+            cats[iCopy].clicks++;
+            document.getElementById(cats[iCopy].nom).innerHTML = cats[iCopy].catset();
+        };
+    })(i));
+    document.getElementById("catty").appendChild(elem);
 }
-
-var $clickdispD9T = $('#clickdispD9T');
-$('#cat-D9T').click(function() {
-    cD9T.clicks++;
-    $clickdispD9T.text('clicked ' + cD9T.clicks + ' times')
-});
-
-var $clickdisp777D = $('#clickdisp777D');
-$('#cat-777D').click(function() {
-    c777D.clicks++;
-    $clickdisp777D.text('clicked ' + c777D.clicks + ' times')
-});
