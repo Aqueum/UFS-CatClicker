@@ -8,8 +8,24 @@
 <body>
     <h1>Click the cutest cat</h1>
     <div id="list"></div>
-    <div id="catviewer">click a cat to see its photo</div>
+    <div id="catviewer">
+        <h2 id="catname"></h2>
+        <img id="catpic" width="512" alt="" src=""/><br/>
+        <a id="attribution">test</a><br/>
+        <p id="catscore">clicks</p>
+        <button type="button" id="adminButton">Admin</button>
+        <div id="admin">
+            <form>
+                Name: <input type="text" name="name" id="Aname"><br>
+                Image URL: <input type="text" name="imgURL" id="AimgURL"><br>
+                Credit: <input type="text" name="credit" id="Acredit"><br>
+                Credit URL: <input type="text" name="creditURL" id="AcreditURL"><br>
+                Clicks: <input type="text" name="clicks" id="Aclicks"><br>
+                <button type="button" id="cancelAdmin">Cancel</button><button type="button" id="saveAdmin">Save</button>
+            </form>
+        </div>
+    </div>
     <script src="js/libs/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/scriptMVO2.js"></script>
 </body>
 </html>

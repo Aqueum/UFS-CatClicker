@@ -7,7 +7,6 @@ function Cat(nom, imgURL, credit, creditURL) {
     this.credit = credit;
     this.creditURL = creditURL;
     this.clicks = 0;
-    this.clickdisp = 'clickdisp'+nom;
     this.catset = function() {return '<h2>'+this.nom+'</h2>'+
         '<img id="'+this.nom+'" width="512" alt="'+this.nom+'" src="'+this.imgURL+'"/>'+
         '<br/>'+'<a class="attribution" href="'+this.creditURL+'">'+this.credit+'</a>'+
